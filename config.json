@@ -1,5 +1,5 @@
 {
     "out_dir": "./out/",
-    "conc_list": "5 10 20 30",
+    "conc_list": "5..20 step 5",
     "urls": "./urls.json"
 }
