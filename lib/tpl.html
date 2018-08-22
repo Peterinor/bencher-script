@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>perf test overview</title>
+
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+
+  <style>
+    body {
+      background-color: #32383e;
+      color: #ccc;
+    }
+
+    table {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .highcharts-tooltip>span {
+      background: darkgray;
+      border: 1px solid silver;
+      box-shadow: 1px 1px 2px #888;
+      padding: 8px;
+    }
+
+    td[data-sparkline] {
+      height: 60px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="table-responsive">
+      <p>Performance Overview of {{=it.name}}</p>
+      {{~it.results: result_of_url}}
+      <table class="table table-striped table-sm table-dark">
+        <caption>{{=result_of_url.action}}</caption>
+        <thead>
+          <tr>
+            <th>concur</th>
+            <th>duration <br />(sec)</th>
+            <th>requets <br />(tot/fail)</th>
+            <th style="width:180px;">qps</th>
+            <th style="width:180px;">avg res<br /> time(ms)</th>
+            <th style="width:180px;">avg server<br /> time(ms)</th>
+            <th>total</th>
+            <th>trans-rate</th>
+            <th>rate_by_time <br /> (50%)</th>
+            <th>rate_by_time <br /> (90%)</th>
+            <th>detail</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{~result_of_url.result:r:idx}} {{?r.clients > 0}}
+          <tr>
+            <td>{{=r.clients}}</td>
+            <td>{{=r.duration.replace(/seconds/, '')}}</td>
+            <td>{{=r.requests.completed}}/{{=r.requests.failed}}</td>
+            <td>{{=r.qps}}</td>
+            <td>{{=r.avg_res_time}}</td>
+            <td>{{=r.avg_server_time}}</td>
+            <td>{{=r.total}}</td>
+            <td>{{=r.rate}}</td>
+            <td>{{=r.rate_by_time['50%']}}</td>
+            <td>{{=r.rate_by_time['90%']}}</td>
+            <!-- <td>
+                {{~Object.keys(r.rate_by_time):rbt}}
+                <label>{{=rbt}}</label>: {{=r.rate_by_time[rbt]}}<br />
+                {{~}}
+            </td> -->
+            <td>
+              <a href="{{=r.out_file}}">view</a>
+            </td>
+          </tr>
+          {{?}} {{~}}
+          <tr data-sparkline="{{=result_of_url.result.map(r => r.clients).join(',')}}">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td data-sparkline="{{=result_of_url.result.map(r => r.qps).join(',')}}"></td>
+            <td data-sparkline="{{=result_of_url.result.map(r => r.avg_res_time).join(',')}}"></td>
+            <td data-sparkline="{{=result_of_url.result.map(r => r.avg_server_time).join(',')}}"></td>
+            <td></td>
+            <td data-sparkline="{{=result_of_url.result.map(r => r.rate).join(',')}}"></td>
+            <td data-sparkline="{{=result_of_url.result.map(r => r.rate_by_time['50%']).join(',')}}"></td>
+            <td data-sparkline="{{=result_of_url.result.map(r => r.rate_by_time['90%']).join(',')}}"></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      {{~}}
+    </div>
+    <span id="1234"></span>
+    <script>
+      Highcharts.SparkLine = function (a, b, c) {
+        var hasRenderToArg = typeof a === 'string' || a.nodeName,
+          options = arguments[hasRenderToArg ? 1 : 0],
+          defaultOptions = {
+            chart: {
+              renderTo: (options.chart && options.chart.renderTo) || this,
+              backgroundColor: null,
+              borderWidth: 0,
+              type: 'area',
+              margin: [2, 0, 2, 0],
+              width: 120,
+              height: 50,
+              style: {
+                overflow: 'visiable',
+                position: 'absolute'
+              },
+              // small optimalization, saves 1-2 ms each sparkline
+              skipClone: true
+            },
+            title: {
+              text: ''
+            },
+            credits: {
+              enabled: false
+            },
+            xAxis: {
+              labels: {
+                enabled: false
+              },
+              title: {
+                text: null
+              },
+              startOnTick: false,
+              endOnTick: false,
+              tickPositions: []
+            },
+            yAxis: {
+              endOnTick: false,
+              startOnTick: false,
+              labels: {
+                enabled: false
+              },
+              title: {
+                text: null
+              },
+              tickPositions: [0]
+            },
+            legend: {
+              enabled: false
+            },
+            tooltip: {
+              backgroundColor: null,
+              borderWidth: 0,
+              shadow: false,
+              useHTML: true,
+              hideDelay: 0,
+              shared: true,
+              padding: 0,
+              positioner: function (w, h, point) {
+                return { x: point.plotX - w / 2, y: point.plotY - h };
+              }
+            },
+            plotOptions: {
+              series: {
+                animation: false,
+                lineWidth: 1,
+                shadow: false,
+                states: {
+                  hover: {
+                    lineWidth: 1
+                  }
+                },
+                marker: {
+                  radius: 1,
+                  states: {
+                    hover: {
+                      radius: 2
+                    }
+                  }
+                },
+                fillOpacity: 0.25
+              },
+              column: {
+                negativeColor: '#910000',
+                borderColor: 'silver'
+              }
+            }
+          };
+
+        options = Highcharts.merge(defaultOptions, options);
+
+        return hasRenderToArg ?
+          new Highcharts.Chart(a, options, c) :
+          new Highcharts.Chart(options, b);
+      };
+
+      var start = +new Date(),
+        $tds = $('td[data-sparkline]'),
+        fullLen = $tds.length,
+        n = 0;
+
+      function renderCharts() {
+        var time = +new Date();
+
+        var xdata;
+        for (var i = 0; i < $tds.length; i += 1) {
+          var $td = $($tds[i]);
+          if (i == 0) {
+            xdata = $td.parent().data('sparkline').split(',');
+          }
+          var stringdata = $td.data('sparkline');
+          var arr = stringdata.split('; ');
+          var data = arr[0].split(',').map(parseFloat);
+          var chart = {
+            width: $td.width(),
+            height: $td.height()
+          };
+
+          if (arr[1]) {
+            chart.type = arr[1];
+          }
+          $td.highcharts('SparkLine', {
+            xAxis: {
+              categories: xdata
+            },
+            series: [{
+              data: data
+            }],
+            tooltip: {
+              formatter: function () {
+                return this.y + '@' + this.x;
+              }
+            },
+            chart: chart
+          });
+
+          n += 1;
+
+          // If the process takes too much time, run a timeout to allow interaction with the browser
+          if (new Date() - time > 500) {
+            $tds.splice(0, i + 1);
+            setTimeout(renderCharts, 0);
+            break;
+          }
+        }
+      }
+      renderCharts();
+    </script>
+</body>
+
+</html>

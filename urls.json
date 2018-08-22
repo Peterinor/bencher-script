@@ -1,0 +1,10 @@
+{
+    "city": {
+        "sha": "http://toy1.weather.com.cn/search?cityname=上海",
+        "pek": {
+            "url": "http://toy1.weather.com.cn/search?cityname=北京",
+            "header": "",
+            "pdata":""
+        }
+    }
+}
