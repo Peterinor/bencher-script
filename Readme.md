@@ -43,3 +43,5 @@ index为url实例名称，下面配置url测试所需的url、header、以及pos
             "shopping": "http://127.0.0.1/shopping"
         }
     }
+
+当然，一个url.config文件中也可以包含多个分组
