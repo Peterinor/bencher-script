@@ -1,6 +1,6 @@
 
 # {{=it.group}}-{{=it.action}}
-mkdir -p {{=it.out_dir}}
+mkdir -p "{{=it.out_dir}}"
 for i in {{=it.conc_list.join(' ')}}
 do
     let "count=i * 50"

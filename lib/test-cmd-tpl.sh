@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-mkdir -p out
+mkdir -p "out"
 
 {cmd} 
 
