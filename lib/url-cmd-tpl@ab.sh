@@ -10,9 +10,7 @@ do
     if [ $count -lt 250 ]; then
         count=250;
     fi
-    echo "ab -n $count -c $i {{?it.header}}-H "{{=it.header}}"{{?}} {{=it.url}} > {{=it.out_dir}}/{{=it.group}}-{{=it.action}}-$i.txt"
-    # echo "ab -t 300 -c $i {{?it.header}}-H "{{=it.header}}"{{?}} {{=it.url}} > {{=it.out_dir}}/{{=it.group}}-{{=it.action}}-$i.txt"
-    ab -n $count -c $i {{?it.header}}-H "{{=it.header}}"{{?}} "{{=it.url}}" > {{=it.out_dir}}/{{=it.group}}-{{=it.action}}-$i.txt
-    # ab  -t 300 -c $i {{?it.header}}-H "{{=it.header}}"{{?}} "{{=it.url}}" > {{=it.out_dir}}/{{=it.group}}-{{=it.action}}-$i.txt
+    echo "ab -n $count -c $i {{?it.header}}-H "{{=it.header}}"{{?}} {{?it.postfile}}-p "{{=it.postfile}}"{{?}} {{=it.url}} > {{=it.out_dir}}/{{=it.group}}-{{=it.action}}-$i.txt"
+    ab -n $count -c $i {{?it.header}}-H "{{=it.header}}"{{?}} {{?it.postfile}}-p "{{=it.postfile}}"{{?}} "{{=it.url}}" > {{=it.out_dir}}/{{=it.group}}-{{=it.action}}-$i.txt
 done
 #
