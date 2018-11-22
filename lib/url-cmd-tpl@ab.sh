@@ -11,6 +11,6 @@ do
         count=250;
     fi
     echo "ab -n $count -c $i {{?it.header}}-H "{{=it.header}}"{{?}} {{?it.postfile}}-p "{{=it.postfile}}"{{?}} {{=it.url}} > {{=it.out_dir}}/{{=it.group}}-{{=it.action}}-$i.txt"
-    ab -n $count -c $i {{?it.header}}-H "{{=it.header}}"{{?}} {{?it.postfile}}-p "{{=it.postfile}}"{{?}} "{{=it.url}}" > {{=it.out_dir}}/{{=it.group}}-{{=it.action}}-$i.txt
+    ab -n $count -c $i {{~it.headers:header}} -H "{{=header}}"{{~}} {{?it.contentType}}-T "{{=it.contentType}}"{{?}} {{?it.postfile}}-p "{{=it.postfile}}"{{?}} "{{=it.url}}" > {{=it.out_dir}}/{{=it.group}}-{{=it.action}}-$i.txt
 done
 #
