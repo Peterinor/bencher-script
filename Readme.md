@@ -22,8 +22,8 @@
         "demo": {
             "index": {
                 "url": "http://127.0.0.1/",
-                "header": "",
-                "pdata": ""
+                "header": ["content-type:application/json"],
+                "postfile": "post-data.json"
             }
         }
     }
@@ -37,8 +37,8 @@ index为url实例名称，下面配置url测试所需的url、header、以及pos
         "shopping": {
             "index": {
                 "url": "http://127.0.0.1/",
-                "header": "",
-                "pdata": ""
+                "header": ["content-type:application/json"],
+                "postfile": "post-data.json"
             },
             "shopping": "http://127.0.0.1/shopping"
         }
