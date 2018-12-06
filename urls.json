@@ -1,10 +1,13 @@
 {
     "demo": {
         "index": {
-            "url": "http://127.0.0.1/",
-            "header": "",
-            "pdata": ""
+            "url": "http://11.4.66.168:10101/",
+			"headers": ["User-Agent: Mozilla/5.0 AppleWebKit/537.36 Chrome/67.0.3396.99 Safari/537.36"]
         },
-        "shopping": "http://127.0.0.1/?page=shopping&chanel=app"
+        "post-index": {
+            "url": "http://11.4.66.168:10101/",
+            "headers": ["User-Agent: Mozilla/5.0 AppleWebKit/537.36 Chrome/67.0.3396.99 Safari/537.36"],
+            "postfile": "urls.json"
+        }
     }
 }

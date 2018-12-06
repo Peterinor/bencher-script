@@ -48,7 +48,7 @@
           <tr>
             <th>concur</th>
             <th>duration <br />(sec)</th>
-            <th>requets <br />(tot/fail)</th>
+            <th>requets <br />(tot/fail/size[KB])</th>
             <th style="width:180px;">qps</th>
             <th style="width:180px;">avg res<br /> time(ms)</th>
             <th style="width:180px;">avg server<br /> time(ms)</th>
@@ -64,7 +64,7 @@
           <tr>
             <td>{{=r.clients}}</td>
             <td>{{=r.duration.replace(/seconds/, '')}}</td>
-            <td>{{=r.requests.completed}}/{{=r.requests.failed}}</td>
+            <td>{{=r.requests.completed}}/{{=r.requests.failed}}/{{=Math.round(r.document.length/1024)}}</td>
             <td>{{=r.qps}}</td>
             <td>{{=r.avg_res_time}}</td>
             <td>{{=r.avg_server_time}}</td>
