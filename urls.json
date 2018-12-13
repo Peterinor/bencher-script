@@ -1,11 +1,11 @@
 {
     "demo": {
         "index": {
-            "url": "http://11.4.66.168:10101/",
+            "url": "http://192.168.10.100:8080/",
 			"headers": ["User-Agent: Mozilla/5.0 AppleWebKit/537.36 Chrome/67.0.3396.99 Safari/537.36"]
         },
         "post-index": {
-            "url": "http://11.4.66.168:10101/",
+            "url": "http://192.168.10.100:8080/",
             "headers": ["User-Agent: Mozilla/5.0 AppleWebKit/537.36 Chrome/67.0.3396.99 Safari/537.36"],
             "postfile": "urls.json"
         }

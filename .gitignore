@@ -1,5 +1,12 @@
 /out
 
+node_modules
+
+.*
+
 urls-*
+post-data-*
 
 test-cmd*
+
+package-lock.json

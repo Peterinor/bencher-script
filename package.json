@@ -1,0 +1,30 @@
+{
+  "name": "bencher-script",
+  "version": "1.0.0",
+  "description": "a bencher tooling based on ab or etc....",
+  "main": "..",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Peterinor/bencher-script.git"
+  },
+  "keywords": [
+    "bench",
+    "ab"
+  ],
+  "author": "yu.tang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Peterinor/bencher-script/issues"
+  },
+  "homepage": "https://github.com/Peterinor/bencher-script#readme",
+  "dependencies": {
+    "commander": "^2.19.0",
+    "save": "^2.3.3"
+  }
+}
