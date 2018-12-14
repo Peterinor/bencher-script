@@ -15,11 +15,11 @@ do
         {{?it.postfile}}-p "{{=it.postfile}}"{{?}} {{=it.url}} > {{=it.out_dir}}/{{=it.group}}-{{=it.action}}-$i.txt"
     ab -n $count -c $i \
         -g {{=it.out_dir}}/data/{{=it.group}}-{{=it.action}}-$i.dat \
-        {{~it.headers:header}}-H "{{=header}}"{{~}} \
-        {{?it.contentType}}-T "{{=it.contentType}}"{{?}} \
+        {{~it.headers:header}} -H "{{=header}}"{{~}} \
+        {{?it.contentType}} -T "{{=it.contentType}}"{{?}} \
         -k -l -r \
-        {{?it.timeout}}-s "{{=it.timeout}}"{{?}} \
-        {{?it.postfile}}-p "{{=it.postfile}}"{{?}} \
+        {{?it.timeout}} -s "{{=it.timeout}}"{{?}} \
+        {{?it.postfile}} -p "{{=it.postfile}}"{{?}} \
         "{{=it.url}}" > {{=it.out_dir}}/{{=it.group}}-{{=it.action}}-$i.txt
 done
 #
