@@ -1,5 +1,9 @@
 {
     "out_dir": "./out/",
     "conc_list": "5..10 step 10",
-    "urls": "./urls.json"
+    "urls": "./urls.json",
+    "variables": {
+        "server": "http://192.168.10.100:8080",
+        "userAgent": "User-Agent: Mozilla/5.0 AppleWebKit/537.36 Chrome/67.0.3396.99 Safari/537.36"
+    }
 }
