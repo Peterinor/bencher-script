@@ -4,6 +4,19 @@
     "urls": "./urls.json",
     "variables": {
         "server": "http://192.168.10.100:8080",
-        "userAgent": "User-Agent: Mozilla/5.0 AppleWebKit/537.36 Chrome/67.0.3396.99 Safari/537.36"
+
+        "userAgent": "Mozilla/5.0 AppleWebKit/537.36 Chrome/67.0.3396.99 Safari/537.36",
+        "apiKey": "bMf3xVVZ8KUly1lr3wCV4G54Xd8tRIzw",
+        "channel": "APP",
+
+        "nginx-demo-server": "http://11.4.66.173:10101",
+        "offer-server": "http://11.4.66.176:9005",
+        "sp-server": "http://11.4.66.173:9001",
+        "ticket-server": "http://11.4.66.176:999",
+        "forward-server": "http://11.4.66.172:9999"
+    },
+    "global": {
+        "headers": ["User-Agent: {{userAgent}}", "APIKey: {{apiKey}}", "channel: {{channel}}"],
+        "contentType": "application/json;charset=UTF-8"
     }
 }
