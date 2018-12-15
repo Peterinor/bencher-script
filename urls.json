@@ -6,7 +6,6 @@
         },
         "post-index": {
             "url": "{{server}}/",
-            "headers": ["{{userAgent}}"],
             "postfile": "urls.json"
         }
     }
