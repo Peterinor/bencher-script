@@ -3,6 +3,3 @@
 mkdir -p "out"
 
 {cmd} 
-
-node ./lib/parse-result.js
-echo "open <scene>-<action>.html to view the result"

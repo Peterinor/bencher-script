@@ -12,14 +12,14 @@ do
         count=250;
     fi
     echo "ab -n $count -c $i {{?it.header}}-H "{{=it.header}}"{{?}} \
-        {{?it.postfile}}-p "{{=it.postfile}}"{{?}} {{=it.url}} > {{=it.out_dir}}/{{=it.scene}}-{{=it.action}}-$i.txt"
+        {{?it.postfile}}-p "{{=it.postfile}}"{{?}} {{=it.url}} > {{=it.out_dir}}/{{=it.action}}-$i.txt"
     ab -n $count -c $i \
-        -g {{=it.out_dir}}/data/{{=it.scene}}-{{=it.action}}-$i.dat \
+        -g {{=it.out_dir}}/data/{{=it.action}}-$i.dat \
         {{~it.headers:header}} -H "{{=header}}"{{~}} \
         {{?it.contentType}} -T "{{=it.contentType}}"{{?}} \
         -k -l -r \
         {{?it.timeout}} -s "{{=it.timeout}}"{{?}} \
         {{?it.postfile}} -p "{{=it.postfile}}"{{?}} \
-        "{{=it.url}}" > {{=it.out_dir}}/{{=it.scene}}-{{=it.action}}-$i.txt
+        "{{=it.url}}" > {{=it.out_dir}}/{{=it.action}}-$i.txt
 done
 #
