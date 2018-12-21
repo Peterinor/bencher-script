@@ -2,24 +2,19 @@
 # {{=it.scene}}-{{=it.action}}
 mkdir -p "{{=it.out_dir}}"
 mkdir -p "{{=it.out_dir}}/data"
-for i in {{=it.conc_list.join(' ')}}
-do
-    let "count=i * 50"
-    # if [ $count -gt 1000 ]; then
-    #     count=1000
-    # fi
-    if [ $count -lt 250 ]; then
-        count=250;
-    fi
-    echo "ab -n $count -c $i {{?it.header}}-H "{{=it.header}}"{{?}} \
-        {{?it.postfile}}-p "{{=it.postfile}}"{{?}} {{=it.url}} > {{=it.out_dir}}/{{=it.action}}-$i.txt"
-    ab -n $count -c $i \
-        -g {{=it.out_dir}}/data/{{=it.action}}-$i.dat \
-        {{~it.headers:header}} -H "{{=header}}"{{~}} \
-        {{?it.contentType}} -T "{{=it.contentType}}"{{?}} \
-        -k -l -r \
-        {{?it.timeout}} -s "{{=it.timeout}}"{{?}} \
-        {{?it.postfile}} -p "{{=it.postfile}}"{{?}} \
-        "{{=it.url}}" > {{=it.out_dir}}/{{=it.action}}-$i.txt
-done
+{{~it.conc_list:conc}}
+{{var count = Math.max((it.count || 50) * conc, 250);}}
+echo "ab -c {{=conc}} {{?it.timelimit}} -t {{=it.timelimit}} {{?}} {{?it.count}} -n {{=count}} {{?}} \
+    {{?it.postfile}}-p '{{=it.postfile}}'{{?}} {{=it.url}} > {{=it.out_dir}}/{{=it.action}}-{{=conc}}.txt"
+ab  -c {{=conc}} \
+    {{?it.timelimit}} -t {{=it.timelimit}} {{?}} \
+    {{?it.count}} -n {{=count}} {{?}} \
+    -g {{=it.out_dir}}/data/{{=it.action}}-{{=conc}}.dat \
+    {{~it.headers:header}} -H "{{=header}}"{{~}} \
+    {{?it.contentType}} -T "{{=it.contentType}}"{{?}} \
+    -k -l -r \
+    {{?it.timeout}} -s "{{=it.timeout}}"{{?}} \
+    {{?it.postfile}} -p "{{=it.postfile}}"{{?}} \
+    "{{=it.url}}" > {{=it.out_dir}}/{{=it.action}}-{{=conc}}.txt
+{{~}}
 #

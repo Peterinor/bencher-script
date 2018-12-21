@@ -1,7 +1,10 @@
 {
     "out_dir": "./out/",
     "conc_list": "5..10 step 10",
-    "urls": "./urls.json",
+    "timelimit": 500,
+    "count": 250,
+    "factor": 250, 
+    "input": "./urls.json",
     "variables": {
         "server": "http://192.168.10.100:8080",
 

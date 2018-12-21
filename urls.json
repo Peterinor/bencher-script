@@ -7,6 +7,10 @@
         "post-index": {
             "url": "{{server}}/",
             "postfile": "urls.json"
+        },
+        "offer": {
+            "url": "{{server}}/offer-res.json",
+            "headers": ["{{userAgent}}"]
         }
     }
 }
