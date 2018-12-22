@@ -9,8 +9,19 @@
             "postfile": "urls.json"
         },
         "offer": {
-            "url": "{{server}}/offer-res.json",
-            "headers": ["{{userAgent}}"]
+            "url": "{{server}}/promotions.json",
+            "headers": ["{{userAgent}}"],
+            "timeout": 1
+        }
+    },
+    "demo-2": {
+        "test": {
+            "url": "{{server}}/",
+            "timeout": 1
+        },
+        "post-test": {
+            "url": "{{server}}/",
+            "postfile": "urls.json"
         }
     }
 }

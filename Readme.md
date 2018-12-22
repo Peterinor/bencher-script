@@ -18,7 +18,7 @@
     -x, --shell [value]      shell type: linux shell(sh) or windows bat(bat)
     -c, --conc_list [value]  concurrency list
     -t, --timelimit [value]  max duration for a test in second
-    -n, --count [value]      requests per concurrency, total request count = concurrency * factor
+    -n, --count [value]      requests per concurrency, total request count = concurrency * count
     -o, --out_dir [value]    out dir - demo: ./out/
     -i, --input [value]      test scenes config file - demo: urls.json
     -s, --scenes [value]     scenes and actions to be benched - demo: scence1/x1,x2;scence2/y1,y2;scence3
@@ -38,7 +38,6 @@
         "conc_list": "5..10 step 10",
         "timelimit": 5000, 
         "count": 250,
-        "factor": 250, 
         "input": "./urls.json",
         "variables": {
             "server": "http://192.168.10.100:8080",
@@ -58,12 +57,11 @@
 + conc_list 并发列表，两种格式 [-c]
   * 1 2 3 4 10 20
   * 5..100 step 5
-+ timelimit/count/factor 这三个参数用于指定压测时长或者次数
++ timelimit/count 这两个参数用于指定压测时长或者次数
   * timelimit - 指定压测的最大时长，单位秒 [-t]
-  * count - 直接指定压测中每个并发的请求的数量 [-n]
-  * factor - 间接指定压测请求的数量，请求数量 = 并发数 × factor [-f]
+  * count - 直接指定压测中每个并发的请求的数量，请求总数量 = 并发数 × factor[-n]
   
-  此三者的优先级为 timelimit > count > factor
+  当count不设置时，采用默认设置，timelimit和count可以同时设置
   
 + input 为测试场景列表文件，测试场景见后续说明。  [-i]
 + variables 全局定义的一些变量，这些变了可以在测试`场景配置`中引用，格式为`{{variable}}`，例：

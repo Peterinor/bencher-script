@@ -1,4 +1,5 @@
 #!/bin/bash
+rm ./test-cmd.sh
 
 echo "***************** generating test commands ****************"
 node ./lib/gen-cmd.js -x sh "$@"

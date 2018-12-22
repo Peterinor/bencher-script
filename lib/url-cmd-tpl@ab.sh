@@ -4,17 +4,17 @@ mkdir -p "{{=it.out_dir}}"
 mkdir -p "{{=it.out_dir}}/data"
 {{~it.conc_list:conc}}
 {{var count = Math.max((it.count || 50) * conc, 250);}}
-echo "ab -c {{=conc}} {{?it.timelimit}} -t {{=it.timelimit}} {{?}} {{?it.count}} -n {{=count}} {{?}} \
-    {{?it.postfile}}-p '{{=it.postfile}}'{{?}} {{=it.url}} > {{=it.out_dir}}/{{=it.action}}-{{=conc}}.txt"
+echo "ab -c {{=conc}} {{?it.timelimit}} -t {{=it.timelimit}} {{?}} {{?it.count || !it.timelimit}} -n {{=count}} {{?}} \
+    {{?it.postfile}}-p '{{=it.postfile}}' {{?}} {{=it.url}} > {{=it.out_dir}}/{{=it.action}}-{{=conc}}.txt"
 ab  -c {{=conc}} \
     {{?it.timelimit}} -t {{=it.timelimit}} {{?}} \
-    {{?it.count}} -n {{=count}} {{?}} \
+    {{?it.count || !it.timelimit}} -n {{=count}} {{?}} \
     -g {{=it.out_dir}}/data/{{=it.action}}-{{=conc}}.dat \
-    {{~it.headers:header}} -H "{{=header}}"{{~}} \
-    {{?it.contentType}} -T "{{=it.contentType}}"{{?}} \
+    {{~it.headers:header}} -H "{{=header}}" {{~}} \
+    {{?it.contentType}} -T "{{=it.contentType}}" {{?}} \
     -k -l -r \
-    {{?it.timeout}} -s "{{=it.timeout}}"{{?}} \
-    {{?it.postfile}} -p "{{=it.postfile}}"{{?}} \
+    {{?it.timeout}} -s {{=it.timeout}} {{?}} \
+    {{?it.postfile}} -p "{{=it.postfile}}" {{?}} \
     "{{=it.url}}" > {{=it.out_dir}}/{{=it.action}}-{{=conc}}.txt
 {{~}}
 #
