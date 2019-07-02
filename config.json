@@ -1,6 +1,6 @@
 {
     "out_dir": "./out/",
-    "conc_list": "5..10 step 10",
+    "conc_list": "5..300 step 10",
     "timelimit": 500,
     "count": 250,
     "input": "./urls.json",
