@@ -12,7 +12,7 @@ ab  -c {{=conc}} \
     -g {{=it.out_dir}}/data/{{=it.action}}-{{=conc}}.dat \
     {{~it.headers:header}} -H "{{=header}}" {{~}} \
     {{?it.contentType}} -T "{{=it.contentType}}" {{?}} \
-    -k -l -r \
+    -k {{?it.variable}} -l {{?}} -r \
     {{?it.timeout}} -s {{=it.timeout}} {{?}} \
     {{?it.postfile}} -p "{{=it.postfile}}" {{?}} \
     "{{=it.url}}" > {{=it.out_dir}}/{{=it.action}}-{{=conc}}.txt
