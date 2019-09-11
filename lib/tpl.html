@@ -48,11 +48,12 @@
           <tr>
             <th>concur</th>
             <th>duration <br />(sec)</th>
-            <th>requets <br />(tot/fail/size[KB])</th>
+            <th>requets <br />(tot/fail/non-2xx/size[KB])</th>
             <th style="width:180px;">qps</th>
             <th style="width:180px;">avg res<br /> time(ms)</th>
             <th style="width:180px;">avg server<br /> time(ms)</th>
             <th>total</th>
+            <th>HTML</th>
             <th>trans-rate</th>
             <th>rate_by_time <br /> (50%)</th>
             <th>rate_by_time <br /> (90%)</th>
@@ -64,11 +65,12 @@
           <tr>
             <td>{{=r.clients}}</td>
             <td>{{=r.duration.replace(/seconds/, '')}}</td>
-            <td>{{=r.requests.completed}}/{{=r.requests.failed}}/{{=Math.round(r.document.length/1024)}}</td>
+            <td>{{=r.requests.completed}}/{{=r.requests.failed}}/{{=r.requests.non2xx}}/{{=Math.round(r.document.length/1024)}}</td>
             <td>{{=r.qps}}</td>
             <td>{{=r.avg_res_time}}</td>
             <td>{{=r.avg_server_time}}</td>
             <td>{{=r.total}}</td>
+            <td>{{=r.html}}</td>
             <td>{{=r.rate}}</td>
             <td>{{=r.rate_by_time['50%']}}</td>
             <td>{{=r.rate_by_time['90%']}}</td>
@@ -89,7 +91,8 @@
             <td data-sparkline="{{=result_of_url.result.map(r => r.qps).join(',')}}"></td>
             <td data-sparkline="{{=result_of_url.result.map(r => r.avg_res_time).join(',')}}"></td>
             <td data-sparkline="{{=result_of_url.result.map(r => r.avg_server_time).join(',')}}"></td>
-            <td></td>
+            <td data-sparkline="{{=result_of_url.result.map(r => parseInt(r.total) || 0).join(',')}}"></td>
+            <td data-sparkline="{{=result_of_url.result.map(r => parseInt(r.html) || 0).join(',')}}"></td>
             <td data-sparkline="{{=result_of_url.result.map(r => r.rate).join(',')}}"></td>
             <td data-sparkline="{{=result_of_url.result.map(r => r.rate_by_time['50%']).join(',')}}"></td>
             <td data-sparkline="{{=result_of_url.result.map(r => r.rate_by_time['90%']).join(',')}}"></td>
