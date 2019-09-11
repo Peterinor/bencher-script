@@ -6,6 +6,7 @@ node ./lib/gen-cmd.js -x sh "$@"
 
 
 echo "************************ run tests ************************"
+chmod +x test-cmd.sh
 ./test-cmd.sh
 
 
