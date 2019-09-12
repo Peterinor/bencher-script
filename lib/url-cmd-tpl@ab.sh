@@ -17,5 +17,7 @@ ab  -c {{=conc}} \
     {{?it.timeout}} -s {{=it.timeout}} {{?}} \
     {{?it.postfile}} -p "{{=it.postfile}}" {{?}} \
     "{{=it.url}}" > {{=it.out_dir}}/{{=it.action}}-{{=conc}}.txt
+echo "rest for 7 seconds"
+sleep 7
 {{~}}
 #
