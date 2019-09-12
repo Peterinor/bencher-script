@@ -13,6 +13,7 @@ ab  -c {{=conc}} \
     {{~it.headers:header}} -H "{{=header}}" {{~}} \
     {{?it.contentType}} -T "{{=it.contentType}}" {{?}} \
     -k {{?it.variable}} -l {{?}} -r \
+    {{?it.cmd_options}} {{=it.cmd_options}} {{?}} \
     {{?it.timeout}} -s {{=it.timeout}} {{?}} \
     {{?it.postfile}} -p "{{=it.postfile}}" {{?}} \
     "{{=it.url}}" > {{=it.out_dir}}/{{=it.action}}-{{=conc}}.txt

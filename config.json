@@ -1,11 +1,13 @@
 {
     "out_dir": "./out/",
-    "conc_list": "5..300 step 10",
+    "conc_list": "5..10 step 10",
     "timelimit": 500,
     "count": 250,
     "input": "./urls.json",
+    "variable": false,
+    "cmd_options": "-w",
     "variables": {
-        "server": "http://192.168.10.100:8080",
+        "server": "http://localhost:8080",
 
         "userAgent": "Mozilla/5.0 AppleWebKit/537.36 Chrome/67.0.3396.99 Safari/537.36",
         "apiKey": "bMf3xVVZ8KUly1lr3wCV4G54Xd8tRIzw",
