@@ -48,7 +48,8 @@
           <tr>
             <th>concur</th>
             <th>duration <br />(sec)</th>
-            <th>requets <br />(tot/fail/non-2xx/size[KB])</th>
+            <th>requets <br />(tot/fail/non-2xx)</th>
+            <th>response <br />(size[KB])</th>
             <th style="width:180px;">qps</th>
             <th style="width:180px;">avg res<br /> time(ms)</th>
             <th style="width:180px;">avg server<br /> time(ms)</th>
@@ -65,7 +66,8 @@
           <tr>
             <td>{{=r.clients}}</td>
             <td>{{=r.duration.replace(/seconds/, '')}}</td>
-            <td>{{=r.requests.completed}}/{{=r.requests.failed}}/{{=r.requests.non2xx}}/{{=Math.round(r.document.length/1024)}}</td>
+            <td>{{=r.requests.completed}}/{{=r.requests.failed}} {{?r.requests.failedDetail}} ({{=r.requests.failedDetail}}) {{?}}/{{=r.requests.non2xx}}</td>
+            <td>{{=Math.round(r.document.length/1024)}}</td>
             <td>{{=r.qps}}</td>
             <td>{{=r.avg_res_time}}</td>
             <td>{{=r.avg_server_time}}</td>
@@ -213,10 +215,9 @@
         for (var i = 0; i < $tds.length; i += 1) {
           var $td = $($tds[i]);
           if (i == 0) {
-            xdata = $td.parent().data('sparkline').split(',');
+            xdata = String($td.parent().data('sparkline')).split(',');
           }
-          var stringdata = $td.data('sparkline');
-          var arr = stringdata.split('; ');
+          var arr = String($td.data('sparkline')).split('; ');
           var data = arr[0].split(',').map(parseFloat);
           var chart = {
             width: $td.width(),
