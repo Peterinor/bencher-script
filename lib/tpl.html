@@ -24,6 +24,10 @@
       vertical-align: middle;
     }
 
+    table.table thead tr th {
+      vertical-align: middle;
+    }
+
     .highcharts-tooltip>span {
       background: darkgray;
       border: 1px solid silver;
@@ -46,20 +50,24 @@
         <caption>{{=result_of_url.action}}</caption>
         <thead>
           <tr>
-            <th>concur</th>
-            <th>duration <br />(sec)</th>
-            <th>requets <br />(tot/fail/non-2xx)</th>
-            <th>response <br />(size[KB])</th>
-            <th style="width:180px;">qps</th>
-            <th style="width:180px;">avg res<br /> time(ms)</th>
-            <th style="width:180px;">avg server<br /> time(ms)</th>
-            <th>total</th>
-            <th>HTML</th>
-            <th>trans-rate</th>
-            <th>rate_by_time <br /> (50%)</th>
-            <th>rate_by_time <br /> (90%)</th>
-            <th>detail</th>
+            <th rowspan="2">concur</th>
+            <th rowspan="2">duration <br />(sec)</th>
+            <th rowspan="2">requets <br />(tot/fail/non-2xx)</th>
+            <th rowspan="2">response <br />(size[KB])</th>
+            <th rowspan="2" style="width:90px;">qps</th>
+            <th rowspan="2" style="width:120px;">avg res<br /> time(ms)</th>
+            <th rowspan="2" style="width:120px;">avg server<br /> time(ms)</th>
+            <th rowspan="2">total</th>
+            <th rowspan="2">HTML</th>
+            <th rowspan="2">trans-rate</th>
+            <th colspan="2">rate_by_time</th>
+            <th rowspan="2">detail</th>
           </tr>
+          <tr>
+            <th>(50%)</th>
+            <th>(90%)</th>
+          </tr>
+
         </thead>
         <tbody>
           {{~result_of_url.result:r:idx}} {{?r.clients > 0}}
