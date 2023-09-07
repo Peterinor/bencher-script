@@ -10,7 +10,7 @@ ab  -c {{=conc}} \
     {{?it.timelimit}} -t {{=it.timelimit}} {{?}} \
     {{?it.count || !it.timelimit}} -n {{=count}} {{?}} \
     -g {{=it.out_dir}}/data/{{=it.action}}-{{=conc}}.dat \
-    {{~it.headers:header}} -H "{{=header}}" {{~}} \
+    {{~it.headers:header}} -H '{{=header}}' {{~}} \
     {{?it.contentType}} -T "{{=it.contentType}}" {{?}} \
     -k {{?it.variable}} -l {{?}} -r \
     {{?it.cmd_options}} {{=it.cmd_options}} {{?}} \

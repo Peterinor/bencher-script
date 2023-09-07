@@ -10,8 +10,8 @@
   <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous">
 
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/highcharts/4.1.0/highcharts.js"></script>
 
   <style>
     body {
@@ -220,12 +220,9 @@
       function renderCharts() {
         var time = +new Date();
 
-        var xdata;
         for (var i = 0; i < $tds.length; i += 1) {
           var $td = $($tds[i]);
-          if (i == 0) {
-            xdata = String($td.parent().data('sparkline')).split(',');
-          }
+          var xdata = String($td.parent().data('sparkline')).split(',');
           var arr = String($td.data('sparkline')).split('; ');
           var data = arr[0].split(',').map(parseFloat);
           var chart = {
