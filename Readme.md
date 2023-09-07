@@ -16,6 +16,7 @@
     -V, --version            output the version number
     -C, --config [value]     config file: demo: ./config.json
     -x, --shell [value]      shell type: linux shell(sh) or windows bat(bat)
+    -e, --benchtool [value]  executable benchtool used for benching, like ab/abs
     -c, --conc_list [value]  concurrency list
     -t, --timelimit [value]  max duration for a test in second
     -n, --count [value]      requests per concurrency, total request count = concurrency * count
